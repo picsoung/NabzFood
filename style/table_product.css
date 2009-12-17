@@ -1,0 +1,33 @@
+#table_shop
+{
+	width: 90%;
+	border: 0px !important;	
+	}
+	
+#table_shop td
+{
+	//width : 25%;
+	text-align: left;
+	padding: 10px;
+	//background-color: blue;
+}	
+
+#table_product_profile, #table_product_stock{margin:10px;}
+
+#table_product,#table_product_profile, #table_product_stock
+{
+	//border: 2px dashed black;
+	background-color: gainsboro;
+	
+	}
+#table_product td, #table_product_profile td, #table_product_stock td
+{
+	width: 350px;
+	height: 100px;
+	padding:10px;
+	}
+	
+#table_product_profile td
+{
+	padding:10px;
+	}
