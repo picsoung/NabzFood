@@ -31,3 +31,20 @@
 {
 	padding:10px;
 	}
+	
+#table_users
+{
+	width: 90%;
+	border: 0px !important;	
+	}
+	
+#table_users_title, #tbl_users_row1
+{
+	background-color: DarkGrey;
+	}
+
+#table_users_title
+{
+	font-weight: bold;
+	font-size: 1.5em;
+	}

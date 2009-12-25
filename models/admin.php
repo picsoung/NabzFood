@@ -183,4 +183,25 @@
 		print_r($query->errorInfo());
 		return $query->errorInfo();
 	}
+	
+	//List all users
+	function list_all_users()
+	{
+		$pdo = PDO2::getInstance();
+		
+		$query = $pdo->prepare("SELECT * FROM tbl_user",array(PDO::ATTR_CURSOR, PDO::CURSOR_SCROLL));
+		
+		$query->execute();
+		$i=-1;
+		$tbx= array();
+		while ($row= $query->fetch(PDO::FETCH_NUM, PDO::FETCH_ORI_NEXT)) {
+			$i = $i+1;
+			$tbx[$i]['user_id']= $row[0];
+   			$tbx[$i]['user_pseudo']= $row[1];
+   			$tbx[$i]['user_mail']= $row[3];
+			$tbx[$i]['user_balance']= $row[4];
+			$tbx[$i]['user_lastconnect']= $row[5];
+		}
+		return $tbx;
+	}
 ?>
