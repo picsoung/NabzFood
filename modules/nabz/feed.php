@@ -9,7 +9,7 @@
     	
 		//Generate a use form for each product on the cart, index is depending on cat id
 				$item_cat= array();
-				$item_cat=display_item_in_cat('1',$_GET['id']); //1 corresponds to feeding item category	
+				$item_cat=display_item_in_cat('1',$_SESSION['id']); //1 corresponds to feeding item category	
 			
 				foreach($item_cat as $value){
 					$form_use[$value] = new Form('form_use'.$value);
@@ -40,7 +40,7 @@
 						if($quantity-1 == 0)
 						{
 							delete_product_incart($value);
-							header("Location: index.php?module=nabz&action=feed&id=".$_GET['id']); //Reload page
+							header("Location: index.php?module=nabz&action=feed&id=".$_SESSION['id']); //Reload page
 						}else{
 							update_quantity($value);
 						}

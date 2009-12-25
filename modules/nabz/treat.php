@@ -9,7 +9,7 @@
 		
 		//Generate a use form for each product on the cart, index is depending on cat id
 				$item_cat= array();
-				$item_cat=display_item_in_cat('3',$_GET['id']); //2 corresponds to feeding item category	
+				$item_cat=display_item_in_cat('3',$_SESSION['id']); //2 corresponds to feeding item category	
 			
 				//array where we will stock the product_id
 				$tbx_use_index = array();
@@ -46,7 +46,7 @@
 						if($quantity-1 == 0)
 						{
 							delete_product_incart($value);
-							header("Location: index.php?module=nabz&action=treat&id=".$_GET['id']); //Reload page
+							header("Location: index.php?module=nabz&action=treat&id=".$_SESSION['id']); //Reload page
 						}else{
 							update_quantity($value);
 						}

@@ -53,17 +53,17 @@
 					$infos_product_tobuy = infos_product($value);
 					
 					//Dont have enough money in the account
-					if(user_balance($_GET['id']) < $infos_product_tobuy['product_price'])
+					if(user_balance($_SESSION['id']) < $infos_product_tobuy['product_price'])
 					{
 						$error_buy[] = "Solde insuffisant pour acheter cet objet, vous pouvez recharger votre compte dans la partie Banque";
 					}
-					elseif(uniq_prdct_in_cart($value,$_GET['id']) != 0) //if the object is already in the cart
+					elseif(uniq_prdct_in_cart($value,$_SESSION['id']) != 0) //if the object is already in the cart
 					{
-						add_product_incart($value,$_GET['id']);
+						add_product_incart($value,$_SESSION['id']);
 						$msg_confirm[] = "Achat effectué avec succès, vous disposiez déjà de ce produit dans votre inventaire, votre achat s'est ajouté à votre stock déjà existant"; 
 					}else
 					{
-						buy_product($value,$_GET['id']);
+						buy_product($value,$_SESSION['id']);
 						$msg_confirm[] = "Achat effectué avec succès, le produit a été ajouté a votre inventaire."; 
 
 					}//end of user_balance

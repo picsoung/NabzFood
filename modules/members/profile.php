@@ -8,7 +8,7 @@
 			{
 				include PATH_VIEW.'error_parameter_profile.php';
 			}else {
-				$infos_user = read_infos_user($_GET['id']);
+				$infos_user = read_infos_user($_SESSION['id']);
 				
 				if (false !== $infos_user && $infos_user['hash_validation'] == '')
 				{

@@ -26,7 +26,7 @@ include PATH_LIB.'pdo2.php';
 
 //is user connected ?
 function user_connected() {
-	
+
 	return !empty($_SESSION['id']);
 	}
 
@@ -35,16 +35,16 @@ function user_connected() {
 	//User not connected but got autologin cookie
 	if(!user_connected() && !empty($_COOKIE['id']) && !empty($_COOKIE['auto_login']))
 	{
-		$infos_user = read_infos_user ($_COOKIE['id']);
+		echo 'not connected'.$_COOKIE['id'];
+		$infos_user = read_infos_user($_COOKIE['id']);
 		
-		if (false !== $infos_user)
+		if(false !== $infos_user)
 		{
 				$browser = (!empty($_SERVER['HTTP_USER_AGENT'])) ? $_SERVER['HTTP_USER_AGENT'] : '';
 			$hash = sha1('592a23516c'.$infos_user['user_pseudo'].'3b665d692a'.$infos_user['user_pass'].'307e352c2b'.$browser.'7e79437856');
 			
-				if ($_COOKIE['auto_login'] == $hash)
-				{
-					
+				if($_COOKIE['auto_login'] == $hash)
+				{		
 					// On enregistre les informations dans la session
 					$_SESSION['id']     = $_COOKIE['id'];
 					$_SESSION['pseudo'] = $infos_user['user_pseudo'];

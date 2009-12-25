@@ -7,7 +7,7 @@
 		
 		//extract infos about nabz
 		include PATH_MODEL.'nabz.php';
-		$infos_nabz = read_infos_nabz($_GET['id']);
+		$infos_nabz = read_infos_nabz($_SESSION['id']);
 		
 		//Edit infos nabz form
 		$form_edit_nabz = new Form('form_edit_nabz');

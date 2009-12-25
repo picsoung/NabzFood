@@ -1,6 +1,6 @@
 <h2>Rabbit Store</h2>
 <p>Vous trouverez ici tous les bons produits dont vous avez besoin pour bien vous occuper de votre lapin.</p>
-<p>Balance de votre compte : <?php echo user_balance($_GET['id']); ?> nab$z</p>
+<p>Solde de votre compte : <?php echo user_balance($_SESSION['id']); ?> nab$z</p>
 
 <?php if (!empty($error_buy)) {
 

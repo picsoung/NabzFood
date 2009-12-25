@@ -9,7 +9,7 @@
 			include PATH_VIEW.'error_parameter_profile.php';
 		}else{
 			require_once(PATH_MODEL.'nabz.php');
-			$infos_nabz = read_infos_nabz($_GET['id']);
+			$infos_nabz = read_infos_nabz($_SESSION['id']);
 			
 			if($infos_nabz !== false) {
 				

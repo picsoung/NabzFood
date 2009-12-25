@@ -1,5 +1,5 @@
 <?php
-eechoooooooooo
+
 class Image {
 
     protected $resource;

@@ -17,7 +17,7 @@
 		if($form_delete_nabz->is_valid($_POST)){
 			
 			include PATH_MODEL.'nabz.php';
-			$infos_nabz = read_infos_nabz($_GET['id']);
+			$infos_nabz = read_infos_nabz($_SESSION['id']);
 				
 			$id_nabz = $infos_nabz['rabbit_id'];
 			
