@@ -19,7 +19,7 @@
 		
 		$pdo = PDO2::getInstance();
 		
-		$query = $pdo->prepare("SELECT user_id FROM tbl_user WHERE user_pseudo = :username AND user_pass = :password AND hash_validation = ''");
+		$query = $pdo->prepare("SELECT user_id FROM tbl_user WHERE user_pseudo = :username AND user_pass = :password");
 	
 		$query->bindValue(':username', $username);
 		$query->bindValue(':password', $password);
@@ -79,5 +79,44 @@
 		
 		$query->execute();
 		return($query->rowCount() == 1);
+	}
+	
+	//Find user_id thanks to his email_addr
+	function find_user_id($email){
+		$pdo = PDO2::getInstance();
+		
+		$query = $pdo->prepare("SELECT user_id FROM tbl_user WHERE user_mail = :email_addr ");
+		
+		$query->bindValue(':email_addr',$email);
+		
+		$query->execute();
+		
+		if ($result = $query->fetch(PDO::FETCH_ASSOC)) {
+		
+			$query->closeCursor();
+			return $result['user_id'];
+		}
+			return false;
+	}
+	
+	//Generate a new password (script founded on sentosoft.com)
+	function gen_new_pwd()
+	{
+		
+		$password_length = 9;
+
+		function make_seed() {
+		  list($usec, $sec) = explode(' ', microtime());
+		  return (float) $sec + ((float) $usec * 100000);
+		}
+		
+		srand(make_seed());
+		
+		$alfa = "1234567890qwertyuiopasdfghjklzxcvbnmQWERTYUIOPASDFGHJKLZXCVBNM";
+		$token = "";
+		for($i = 0; $i < $password_length; $i ++) {
+		  $token .= $alfa[rand(0, strlen($alfa)-1)];
+		}    
+		return $token;
 	}
 ?>
