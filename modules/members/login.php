@@ -36,20 +36,29 @@ if ($form_login->is_valid($_POST)){
 		{
 			$infos_user = read_infos_user($id_user);
 			
-			$_SESSION['id'] = $id_user;
-			$_SESSION['pseudo'] = $username;
-			$_SESSION['email'] = $infos_user['user_mail'];
+                        if(!empty($infos_user['hash_validation'])) //For those who dont activated they account
+                        {
+                            $errors_login[]="Compte non validé pour recevoir à nouveau un lien d'activation : <a href=\"index.php?module=members&amp;action=reset_pwd\"> formulaire de renvoi de lien d'activation </a> </p>";
+                            include PATH_VIEW.'form_login.php';
+                        }
+                        else
+                        {
+                            $_SESSION['id'] = $id_user;
+                            $_SESSION['pseudo'] = $username;
+                            $_SESSION['email'] = $infos_user['user_mail'];
+                            
+                            if(false !== $form_login->get_cleaned_data('auto_login'))
+                            {
+                                    $browser = (!empty($_SERVER['HTTP_USER_AGENT'])) ? $_SERVER['HTTP_USER_AGENT'] : '';
+                                    $hash_cookie = sha1('592a23516c'.$username.'3b665d692a'.sha1($password).'307e352c2b'.$browser.'7e79437856');
+                                    
+                                    setcookie('id', $_SESSION['id'], strtotime("+1 hour"), '/');
+                                    setcookie('auto_login', $hash_cookie,strtotime("+1 hour"), '/');
+                            }
+                            
+                            include PATH_VIEW.'login_ok.php';
+                        }//end of hash_validation !empty
 			
-			if(false !== $form_login->get_cleaned_data('auto_login'))
-			{
-				$browser = (!empty($_SERVER['HTTP_USER_AGENT'])) ? $_SERVER['HTTP_USER_AGENT'] : '';
-				$hash_cookie = sha1('592a23516c'.$username.'3b665d692a'.sha1($password).'307e352c2b'.$browser.'7e79437856');
-				
-				setcookie('id', $_SESSION['id'], strtotime("+1 hour"), '/');
-				setcookie('auto_login', $hash_cookie,strtotime("+1 hour"), '/');
-			}
-			
-			include PATH_VIEW.'login_ok.php';
 		} else {
 			
 			$errors_login[] = "Compte inexistant ou mot de passe non valide";
