@@ -2,9 +2,8 @@
 //only display this page if user is not connected
 	if(user_connected()) {
 		include PATH_GLOBAL_VIEW.'error_already_connected.php';
-	}else {?>
-
-<?php
+	}else {
+		
 	include PATH_LIB.'form.php';
 	
 	//Signup Form
@@ -65,10 +64,7 @@
 				
 				
 				// Preparation du mail
-				$message_mail = '<html><head></head><body>
-				<p>Merci de vous être inscrit sur "mon site" !</p>
-				<p>Veuillez cliquer sur <a href="http://'.$_SERVER['PHP_SELF'].'?module=members&amp;action=valid_account&amp;hash='.$hash_validation.'">ce lien</a> pour activer votre compte !</p>
-				</body></html>';
+				$message_mail = "<html><head></head><body> <p>Merci de vous être inscrit sur '\mon site\' !</p> <p>Veuillez cliquer sur <a href=\"http://".$_SERVER['PHP_SELF']."?module=members&amp;action=valid_account&amp;hash=\".$hash_validation."\">ce lien</a> pour activer votre compte !</p></body></html>";
 				
 				$headers_mail  = 'MIME-Version: 1.0'                           ."\r\n";
 				$headers_mail .= 'Content-type: text/html; charset=utf-8'      ."\r\n";
