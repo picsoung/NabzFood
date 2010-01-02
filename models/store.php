@@ -109,25 +109,6 @@
 		return false;
 	}
 	
-	//Get the balance of user account
-	function user_balance($usr_id)
-	{
-		$pdo = PDO2::getInstance();
-		
-		$query = $pdo->prepare("SELECT user_balance FROM tbl_user WHERE user_id = :user_id");
-		
-		$query->bindValue(":user_id",$usr_id);
-		
-		$query->execute();
-		
-		if ($result = $query->fetch(PDO::FETCH_ASSOC)) {
-		
-			$query->closeCursor();
-			return $result['user_balance'];
-		}
-		return false;
-	}
-	
 	//Buy a product
 	function buy_product($prdct_id,$usr_id)
 	{
