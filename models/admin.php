@@ -201,7 +201,40 @@
    			$tbx[$i]['user_mail']= $row[3];
 			$tbx[$i]['user_balance']= $row[4];
 			$tbx[$i]['user_lastconnect']= $row[5];
+			$tbx[$i]['hash_validation']= $row[6];
 		}
 		return $tbx;
+	}
+	
+	//Update all the infos of an user
+	function update_infos_user($pseudo, $password, $mail, $balance, $id_user)
+	{
+		$pdo = PDO2::getInstance();
+		$query = $pdo->prepare("UPDATE tbl_user SET user_pseudo = :pseudo, user_pass = :password, user_mail = :mail, user_balance = :balance WHERE user_id = :id_user");
+		
+		$query->bindValue(":pseudo",$pseudo);
+		$query->bindValue(":password",$password);
+		$query->bindValue(":mail",$mail);
+		$query->bindValue(":balance",$balance);
+		$query->bindValue(":id_user",$id_user);
+		
+		if($query->execute()) {
+			return $pdo->lastInsertId();
+		}
+		//print_r($query->errorInfo());
+		return $query->errorInfo();
+	}
+	
+	//Delete an user depending on his id
+	function delete_user($id_user)
+	{
+		$pdo = PDO2::getInstance();
+		$query = $pdo->prepare("DELETE FROM tbl_user WHERE user_id = :id_user");
+		
+		$query->bindValue(":id_user",$id_user);
+		if($query->execute()) {
+			return $pdo->lastInsertId();
+		}
+		return $query->errorInfo();
 	}
 ?>
