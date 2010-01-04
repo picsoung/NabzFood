@@ -78,3 +78,17 @@ table, tr, td, th
 	background-color: green;
 	font-size: 16pt;
 }
+
+#id_error
+{
+	background-color: red;
+	font-weight: bold;
+	text-align: center;
+}
+
+#id_valid
+{
+	background-color: green;
+	font-weight: bold;
+	text-align: center;
+}
