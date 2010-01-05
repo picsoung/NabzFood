@@ -31,8 +31,11 @@
 		
 		$txtmessage = str_replace("\r\n", "<br \>", $txtmessage);  //replace txt \n by HTML <br />
 		
-		echo $subject.'<br \>';
-		echo $txtmessage;
+		$email_addr = $infos_user['user_mail'];
+		$message_mail = $txtmessage;
+
+		//Send mail
+		include './modules/mail/mail.php';
 	    }//end of is_valid
 	    
             include PATH_VIEW.'form_mail_user.php';

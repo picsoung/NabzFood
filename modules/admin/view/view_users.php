@@ -66,3 +66,4 @@
 
 		?>
 </tbody></table>
+<a href="<?php echo 'index.php?module=admin&action=mail_all_users&id='.$_SESSION['id'];?>"><img src="<?php echo PATH_IMAGE_RESSOURCE."mail.png"?>">&nbsp;Mail à tout les membres</a>
