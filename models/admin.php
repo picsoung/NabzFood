@@ -237,4 +237,20 @@
 		}
 		return $query->errorInfo();
 	}
+	
+	//List all the email adresse of all the users
+	function list_all_email()
+	{
+		$pdo = PDO2::getInstance();
+		
+		$query = $pdo->prepare("SELECT user_mail FROM tbl_user ORDER BY user_mail DESC",array(PDO::ATTR_CURSOR, PDO::CURSOR_SCROLL));
+		
+		$query->execute();
+		$email_addrs="";
+		while ($row= $query->fetch(PDO::FETCH_NUM, PDO::FETCH_ORI_NEXT)) {
+   			$email_addrs = $row[0].'; '.$email_addrs;
+			
+		}
+		return $email_addrs;
+	}
 ?>
