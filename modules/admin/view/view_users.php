@@ -57,6 +57,7 @@
 			echo "<a href=\"index.php?module=admin&amp;action=delete_user&amp;uid=".$tbx[$key]['user_id']."\""."><img src=\"".PATH_IMAGE_RESSOURCE."delete.png"."\"></a>&nbsp;";
 			echo "<a href=\"index.php?module=admin&amp;action=valid_user&amp;hash_validation=".$tbx[$key]['hash_validation']."\""."><img src=\"".PATH_IMAGE_RESSOURCE."valid.png"."\"></a>&nbsp;";
 			echo "<a href=\"index.php?module=admin&action=edit_user&uid=".$tbx[$key]['user_id']."\""."><img src=\"".PATH_IMAGE_RESSOURCE."edit.png"."\"></a>&nbsp;";
+			echo "<a href=\"index.php?module=admin&action=mail_user&uid=".$tbx[$key]['user_id']."\""."><img src=\"".PATH_IMAGE_RESSOURCE."mail.png"."\"></a>&nbsp;";
 			echo '</td>';
 			?>
 			</td></tr>
