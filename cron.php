@@ -31,7 +31,7 @@ include 'global/init.php';
 		}
 		//$nabz_serial = $tbx_rabbits_id['rabbit_serial'];
 		echo 'nabz serial'.$nabz_serial;
-		include PATH_MODEL.'sendMess.php';
+		include PATH_LIB.'sendMess.php';
 		
 	}//end foreach
 ?>
