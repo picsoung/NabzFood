@@ -2,6 +2,22 @@
 {
 	font-family: Calibri;
 }
+
+body{
+	background-image:url(../images/ressources/fond.jpg);
+	background-repeat:repeat-x;
+	background-position: top left;
+}
+
+h1{
+	//background-image:url(../images/ressources/fond_titre.jpg);
+	background-position: center;
+	color: white;
+}
+
+a{
+	text-decoration:none;
+}
 body, #menu, #centre
 h1, h2, h3, h4, h5, h6
 {
@@ -19,6 +35,12 @@ h2, h3, h4, h5, h6
 
 	margin-bottom: 0.5em;
 }
+
+#left,#menu,#centre,#nabz_summary,table
+{
+	-moz-border-radius: 10px;
+	-webkit-border-radius: 10px;
+}
 #left
 {
 	width: 18%;
@@ -26,29 +48,32 @@ h2, h3, h4, h5, h6
 	}
 #menu
 {
+	
 	margin: 0em 1em 1em;
 	padding: 1em;
-	background-color: #22ff37;
+	background-color: #EAF401;
 }
 
 #nabz_summary
 {
 	margin: 1em 1em 1em;
 	padding: 1em;
-	background-color: red;
+	background-color: gold;
 }
 
 #centre
 {
 	margin: 1em 1em 1em 23%;
 	padding: 1em;
-	background-color: #eeeeee;
+	background-color: white;
 }
 #bas
 {
 	clear: both;
 	padding: 1em;
-	background-color: #3366ff;
+	background-color: #7A7A7C;
+	text-align:center;
+	color:white;
 }
 label
 {
@@ -69,7 +94,6 @@ table, tr, td, th
 #ul_error
 {
 	background-color: red;
-	height: 20px;
 	font-size: 16pt;
 }
 
