@@ -16,7 +16,7 @@
 				return $result;
 			}
 			return false;
-		}
+	}
 		
 	//Read skill infos of the nabz
 	function read_skill_nabz($id_nabz){
