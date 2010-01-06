@@ -2,7 +2,7 @@
 	//Decrease angry skill of all rabbits
 	function udapte_angry_skill()
 	{
-		echo 'updat angry skill';
+
 		$pdo = PDO2::getInstance();
 		
 		$query = $pdo->prepare("UPDATE tbl_rabbit_skill SET skill_angry = IF( (skill_angry - :new_skill )<0,0,(skill_angry - :new_skill ))");
@@ -38,7 +38,7 @@
 	{
 		$pdo = PDO2::getInstance();
 		
-		$query = $pdo->prepare("SELECT rabbit_id FROM tbl_rabbit");
+		$query = $pdo->prepare("SELECT rabbit_id, rabbit_serial, rabbit_token FROM tbl_rabbit");
 		$query->execute();
 		
 		if ($result = $query->fetchAll(PDO::FETCH_COLUMN)); {
@@ -49,7 +49,7 @@
 	}
 	
 	//Function send a message of angry
-	function_send_angry_msg($id_nabz)
+	function function_send_angry_msg($id_nabz)
 	{
 		$pdo = PDO2::getInstance();
 		
@@ -64,5 +64,23 @@
 		$serial = $query->execute();
 		
 		
-		}
+	}
+	
+	//Get serial and token of a nabz depending on his id
+	function get_serial_and_token($id_nabz)
+	{
+		$pdo = PDO2::getInstance();
+		$query = $pdo->prepare("SELECT rabbit_serial, rabbit_token FROM tbl_rabbit WHERE rabbit_id = :id_nabz",array(PDO::ATTR_CURSOR, PDO::CURSOR_SCROLL));
+		$query->bindValue(":id_nabz", $id_nabz);
+		
+		$query->execute();
+		$tbx= array();
+		while ($row= $query->fetch(PDO::FETCH_NUM, PDO::FETCH_ORI_NEXT)) {
+			$tbx['rabbit_serial']= $row[0];
+			$tbx['rabbit_token']=$row[1];
+		} 
+		
+		//$tbx is an array with all the informations of a product
+		return $tbx;
+	}
 ?>
