@@ -42,7 +42,8 @@
 		
 	    }//end of empty hash_validation
 	    $message_mail .="</body></html>";
-				
+		
+		$subject = "[Nabzfood] Réinitialisation mot de passe";
 	    // Envoi du mail
 	    include './modules/mail/mail.php';
         
@@ -50,7 +51,6 @@
 	    {
                 $error_reset_pwd[]="Nous n'avons pas trouvé de compte corespondant à cet e-mail, merci d'enter une adresse valide. Si vous n'êtes pas encore inscrit cliquez sur le lien \"Inscription\" dans le menu de gauche.";
             }//end of user_id !=false
-            echo 'user '.$user_id.' email '.$email_addr.' pass '.$new_pwd;
 
         }//end is valid
         include PATH_VIEW.'form_reset_pwd.php';
