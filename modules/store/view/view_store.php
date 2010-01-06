@@ -1,6 +1,6 @@
 <h2>Rabbit Store</h2>
 <p>Vous trouverez ici tous les bons produits dont vous avez besoin pour bien vous occuper de votre lapin.</p>
-<p>Solde de votre compte : <?php echo user_balance($_SESSION['id']); ?> nab$z</p>
+<p>Solde de votre compte : <img src="<?php echo PATH_IMAGE_RESSOURCE."donate.png";?>"><?php echo user_balance($_SESSION['id']); ?> nab$z</p>
 
 
 <?php
@@ -54,12 +54,26 @@ if (!empty($msg_confirm)) {
 			   		echo $infos_product['product_description'][$i].'<br \>';
 			   		echo '</td>';
 					echo '<td>';
-					echo 'Quantité disponible '.$infos_product['product_quantity'][$i].'<br \>';
-					echo 'Prix : '.$infos_product['product_price'][$i].' nab$z'.'<br \>';
-					echo 'Points de santé : '.$infos_product['prdct_health_pt'][$i].'<br \>';
-					echo 'Points de faim : '.$infos_product['prdct_angry_pt'][$i].'<br \>';
-					echo 'Points de soif : '.$infos_product['prdct_thirst_pt'][$i].'<br \>';
-					echo 'Portions : '.$infos_product['product_portion'][$i].'<br \>';
+					echo "<img id=\"img_skill\" src=\"".PATH_IMAGE_RESSOURCE."basket.png\">";
+					echo '&nbsp;&nbsp;'.$infos_product['product_quantity'][$i].' unités disponibles'.'<br \>';
+					echo "<img id=\"img_skill\" src=\"".PATH_IMAGE_RESSOURCE."money.png\">";
+					echo '&nbsp;&nbsp;'.$infos_product['product_price'][$i].' nab$z'.'<br \>';
+					
+					//health
+					echo "<img id=\"img_skill\" src=\"".PATH_IMAGE_RESSOURCE."heart.png\">";
+					echo '&nbsp;&nbsp;'.'+'.$infos_product['prdct_health_pt'][$i].'<br \>';
+					
+					//angry
+					echo "<img id=\"img_skill\" src=\"".PATH_IMAGE_RESSOURCE."food.png\">";
+					echo '&nbsp;&nbsp;'.'+'.$infos_product['prdct_angry_pt'][$i].'<br \>';
+					
+					//thearth
+					echo "<img id=\"img_skill\" src=\"".PATH_IMAGE_RESSOURCE."drink.png\">";
+					echo '&nbsp;&nbsp;'.'+'.$infos_product['prdct_thirst_pt'][$i].'<br \>';
+					
+					//portions
+					echo "<img id=\"img_skill\" src=\"".PATH_IMAGE_RESSOURCE."portion.png\">";
+					echo '&nbsp;&nbsp;'.$infos_product['product_portion'][$i].' portions'.'<br \>';
 					echo  $form_buy[$infos_product['product_id'][$i]];
 					echo '</td></tr></tbody>';
 					echo '</table></td>';
