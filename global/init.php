@@ -35,7 +35,7 @@ function user_connected() {
 	//User not connected but got autologin cookie
 	if(!user_connected() && !empty($_COOKIE['id']) && !empty($_COOKIE['auto_login']))
 	{
-		echo 'not connected'.$_COOKIE['id'];
+		//echo 'not connected'.$_COOKIE['id'];
 		$infos_user = read_infos_user($_COOKIE['id']);
 		
 		if(false !== $infos_user)
