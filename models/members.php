@@ -138,4 +138,14 @@
 		}
 		return false;
 	}
+	
+	//Update last_connect field in db
+	function up_lastconnect($id_user)
+	{
+		$pdo = PDO2::getInstance();
+		
+		$query = $pdo->prepare("UPDATE tbl_user SET user_lastconnect = NOW() WHERE user_id = :id_user");
+		$query->bindValue(":id_user",$id_user);
+		return $query->execute();
+	}
 ?>
