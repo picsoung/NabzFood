@@ -64,10 +64,21 @@ if (!empty($msg_confirm)) {
 			   		echo $infos_product['product_description'].'<br \>';
 			   		echo '</td>';
 					echo '<td>';
-					echo 'Points de santé : '.$infos_product['prdct_health_pt'].'<br \>';
-					echo 'Points de faim : '.$infos_product['prdct_angry_pt'].'<br \>';
-					echo 'Points de soif : '.$infos_product['prdct_thirst_pt'].'<br \>';
-					echo 'Quantité disponible : '.display_quantity($infos_product['product_id'],$_SESSION['id']).'<br \>';
+					//health
+					echo "<img id=\"img_skill\" src=\"".PATH_IMAGE_RESSOURCE."heart.png\">";
+					echo '&nbsp;&nbsp;'.'+'.$infos_product['prdct_health_pt'].'<br \>';
+					
+					//angry
+					echo "<img id=\"img_skill\" src=\"".PATH_IMAGE_RESSOURCE."food.png\">";
+					echo '&nbsp;&nbsp;'.'+'.$infos_product['prdct_angry_pt'].'<br \>';
+					
+					//thearth
+					echo "<img id=\"img_skill\" src=\"".PATH_IMAGE_RESSOURCE."drink.png\">";
+					echo '&nbsp;&nbsp;'.'+'.$infos_product['prdct_thirst_pt'].'<br \>';
+					
+					//portions
+					echo "<img id=\"img_skill\" src=\"".PATH_IMAGE_RESSOURCE."portion.png\">";
+					echo '&nbsp;&nbsp;'.display_quantity($infos_product['product_id'],$_SESSION['id']).' portions disponibles'.'<br \>';
 					echo  $form_use[$value];
 					echo '</td></tr></tbody>';
 					echo '</table>';

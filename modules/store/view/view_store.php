@@ -50,12 +50,12 @@ if (!empty($msg_confirm)) {
 					echo '<table id=\'table_product\'><tbody><tr>';
 					echo '<td>';
 			   		echo '<img src='.PATH_IMAGE_STORE.$infos_product['product_image'][$i].'>'.'<br \>';
-			   		echo $infos_product['product_name'][$i].'<br \>';
+			   		echo '<b>'.$infos_product['product_name'][$i].'</b>'.'<br \>';
 			   		echo $infos_product['product_description'][$i].'<br \>';
 			   		echo '</td>';
 					echo '<td>';
 					echo "<img id=\"img_skill\" src=\"".PATH_IMAGE_RESSOURCE."basket.png\">";
-					echo '&nbsp;&nbsp;'.$infos_product['product_quantity'][$i].' unités disponibles'.'<br \>';
+					echo '&nbsp;&nbsp;'.$infos_product['product_quantity'][$i].' lots en stock'.'<br \>';
 					echo "<img id=\"img_skill\" src=\"".PATH_IMAGE_RESSOURCE."money.png\">";
 					echo '&nbsp;&nbsp;'.$infos_product['product_price'][$i].' nab$z'.'<br \>';
 					
