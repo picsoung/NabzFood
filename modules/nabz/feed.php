@@ -4,8 +4,8 @@
 		include PATH_GLOBAL_VIEW.'error_not_connected.php';
 	}else {
 		include PATH_LIB.'form.php';
-    	require_once(PATH_MODEL.'store.php');
-    	require_once(PATH_MODEL.'nabz.php');
+		require_once(PATH_MODEL.'store.php');
+		require_once(PATH_MODEL.'nabz.php');
     	
 		//Generate a use form for each product on the cart, index is depending on cat id
 				$item_cat= array();

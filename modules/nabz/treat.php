@@ -4,12 +4,12 @@
 		include PATH_GLOBAL_VIEW.'error_not_connected.php';
 	}else {
 		include PATH_LIB.'form.php';
-    	require_once(PATH_MODEL.'store.php');
-    	require_once(PATH_MODEL.'nabz.php');
+		require_once(PATH_MODEL.'store.php');
+		require_once(PATH_MODEL.'nabz.php');	
 		
 		//Generate a use form for each product on the cart, index is depending on cat id
 				$item_cat= array();
-				$item_cat=display_item_in_cat('3',$_SESSION['id']); //2 corresponds to feeding item category	
+				$item_cat=display_item_in_cat('3',$_SESSION['id']); //3 corresponds to treating item category	
 			
 				//array where we will stock the product_id
 				$tbx_use_index = array();
