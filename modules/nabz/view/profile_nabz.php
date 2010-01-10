@@ -14,5 +14,5 @@
 	<?php display_skill($id_nabz); ?>
 </p>
 
-<a href="<?php echo 'index.php?module=nabz&amp;action=edit_nabz&id='.$_SESSION['id'];?>">Modifier mon profil</a>&nbsp;
+<a href="<?php echo 'index.php?module=nabz&amp;action=edit_nabz&id='.$_SESSION['id'];?>">Modifier son profil</a>&nbsp;
 <a href="<?php echo 'index.php?module=nabz&amp;action=delete_nabz&id='.$_SESSION['id'];?>">Supprimer son profil</a>

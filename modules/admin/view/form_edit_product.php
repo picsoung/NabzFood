@@ -23,7 +23,7 @@
 					echo '<table id=\'table_product_stock\' '.$style.'><tbody><tr>';
 					echo '<td>';
 			   		echo '<img src='.PATH_IMAGE_STORE.$infos_product['product_image'].'>'.'<br \>';
-			   		echo $infos_product['product_name'].'<br \>';
+			   		echo '<b>'.$infos_product['product_name'].'</b>'.'<br \>';
 			   		echo $infos_product['product_description'].'<br \>';
 			   		echo '</td>';
 					echo '<td>';
