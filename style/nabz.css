@@ -1,8 +1,8 @@
 #tabs
 {
-    font : 14px Batang, arial, serif;
+    font : 16px Batang, arial, serif;
     list-style-type : none;
-    padding-bottom : 24px; /* à modifier suivant la taille de la police ET de la hauteur de l'tab dans #tabs li */
+    padding-bottom : 26px; /* à modifier suivant la taille de la police ET de la hauteur de l'tab dans #tabs li */
     border-bottom : 1px solid #9EA0A1;
     margin-left : 0;
 }
@@ -10,7 +10,7 @@
 #tabs li
 {
     float : left;
-    height : 21px; /* à modifier suivant la taille de la police pour centrer le texte dans l'tab */
+    height : 23px; /* à modifier suivant la taille de la police pour centrer le texte dans l'tab */
     background-color: #F4F9FD;
     margin : 2px 2px 0 2px !important;  /* Pour les navigateurs autre que IE */
     margin : 1px 2px 0 2px;  /* Pour IE  */
@@ -23,10 +23,15 @@
     background-color: #fff;
 }
 
+#tabs li.active a, a:hover
+{
+    color: grey !important;
+}
+
 #tabs a
 {
     display : block;
-    color : #666;
+    color : grey ;
     text-decoration : none;
     padding : 4px;
 }
