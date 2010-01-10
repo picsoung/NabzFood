@@ -41,9 +41,9 @@
 					if ($new_quantity != "")
 					{
 						add_quantity($value,$new_quantity);
-						$msg_confirm = "Ajout de quantité correctement réalisé.";
+						$msg_confirm[] = "Ajout de quantité correctement réalisé.";
 					}else{
-						$error_stock = "La quantité rentrée est non valide, merci de réessayer.";
+						$error_stock[] = "La quantité rentrée est non valide, merci de réessayer.";
 						include PATH_VIEW.'form_add_quantity.php';
 						}					
 				}//end is_valid
