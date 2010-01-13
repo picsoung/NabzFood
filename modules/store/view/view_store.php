@@ -60,7 +60,7 @@ if (!empty($msg_confirm)) {
 					echo '&nbsp;&nbsp;'.$infos_product['product_price'][$i].' nab$z'.'<br \>';
 					
 					//health
-					echo "<img id=\"img_skill\" src=\"".PATH_IMAGE_RESSOURCE."heart.png\">";
+					echo "<img id=\"img_skill\" src=\"".PATH_IMAGE_RESSOURCE."health.png\">";
 					echo '&nbsp;&nbsp;'.'+'.$infos_product['prdct_health_pt'][$i].'<br \>';
 					
 					//angry
