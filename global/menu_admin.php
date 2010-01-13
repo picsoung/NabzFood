@@ -3,8 +3,8 @@
 		// Arrays with links and text to be displayed
 		$url='index.php?module=admin&amp;action=';
 		$id = '&id='.$_SESSION['id'];
-	$tab_menu_link = array( $url.'add_productandcat'.$id, $url.'add_quantity'.$id, $url.'manage_product'.$id, $url.'users'.$id);
-	$tab_menu_text = array( "Ajouter un(e) produit/catégorie", "Stocks", "Produits", "Utilisateurs");
+	$tab_menu_link = array( $url.'add_productandcat'.$id, $url.'add_quantity'.$id, $url.'manage_product'.$id, $url.'users'.$id,$url.'nabz'.$id);
+	$tab_menu_text = array( "Ajouter un(e) produit/catégorie", "Stocks", "Produits", "Utilisateurs","Lapins");
 	
 	//informations about the page
 	$info = pathinfo($_SERVER['PHP_SELF']);
