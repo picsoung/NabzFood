@@ -1,3 +1,11 @@
+<?php
+    require_once("global/menu_admin.php");
+	
+    $menu = display_menu_admin();
+    echo $menu;
+    
+?>
+
 <h2>Gestion des utilisateurs</h2>
 <?php
 	//Display Errors
@@ -47,10 +55,10 @@
 			echo '<td>'.$tbx[$key]['user_balance'].'</td>';
 			if(!empty($tbx[$key]['hash_validation'])) //if user has not validate his account
 			{
-				echo '<td id = "id_error">'.'Non validé'.'</td>';
+				echo '<td id = "td_error">'.'Non validé'.'</td>';
 			}else
 			{
-				echo '<td id = "id_valid">'.'Validé'.'</td>';
+				echo '<td id = "td_valid">'.'Validé'.'</td>';
 				}
 			
 			echo '<td>';
