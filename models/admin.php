@@ -253,4 +253,71 @@
 		}
 		return $email_addrs;
 	}
+	
+	//List all rabbits
+	function list_all_rabbits()
+	{
+		$pdo = PDO2::getInstance();
+		
+		$query = $pdo->prepare("SELECT * FROM tbl_rabbit",array(PDO::ATTR_CURSOR, PDO::CURSOR_SCROLL));
+		
+		$query->execute();
+		$i=0;
+		$tbx= array();
+		while ($row= $query->fetch(PDO::FETCH_NUM, PDO::FETCH_ORI_NEXT)) {
+			$tbx[$i]['rabbit_id']= $row[0];
+   			$tbx[$i]['rabbit_usr_id']= $row[1];
+   			$tbx[$i]['rabbit_token']= $row[2];
+			$tbx[$i]['rabbit_serial']= $row[3];
+			$tbx[$i]['rabbit_name']= $row[4];
+			$i = $i+1;
+		}
+		
+		$query = $pdo->prepare("SELECT * FROM tbl_rabbit_skill",array(PDO::ATTR_CURSOR, PDO::CURSOR_SCROLL));
+		
+		$query->execute();
+		$i=0;
+		while ($row= $query->fetch(PDO::FETCH_NUM, PDO::FETCH_ORI_NEXT)) {
+			$tbx[$i]['rabbit_skill_id']= $row[0];
+   			$tbx[$i]['skill_angry']= $row[2];
+   			$tbx[$i]['skill_thirst']= $row[3];
+			$tbx[$i]['skill_health']= $row[4];
+			$i = $i+1;
+		}
+		
+		return $tbx;
+	}
+	
+	//Treat nabz function all points at 100%
+	function treat_nabz($id_nabz)
+	{
+		
+		$pdo = PDO2::getInstance();
+		
+		$query = $pdo->prepare("UPDATE tbl_rabbit_skill SET skill_angry = :full_skill, skill_thirst = :full_skill, skill_health = :full_skill WHERE rabbit_id = :id_nabz");
+		
+		$query->bindValue(':full_skill',100);
+		$query->bindValue(':id_nabz',$id_nabz);
+		$query->execute();
+		
+		return $query->errorInfo();
+	}
+	
+	//Update nabz skill
+	function update_nabz_skill($id_nabz, $skill_angry,$skill_thirst,$skill_health)
+	{
+		$pdo = PDO2::getInstance();
+		$query = $pdo->prepare("UPDATE tbl_rabbit_skill SET skill_angry = IF( (:skill_angry)>100,100,(:skill_angry)) ,skill_thirst = IF( (:skill_thirst)>100,100,(:skill_thirst)),skill_health = IF( (:skill_health)>100,100,(:skill_health)) WHERE rabbit_id = :id_nabz");
+		
+		$query->bindValue(':skill_angry',$skill_angry);
+		$query->bindValue(':skill_thirst',$skill_thirst);
+		$query->bindValue(':skill_health',$skill_health);
+		$query->bindValue(':id_nabz',$id_nabz);
+		
+		$query->execute();
+		
+		return $query->errorInfo();
+	
+	}
+	
 ?>
