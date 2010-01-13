@@ -68,7 +68,7 @@
 		echo '<br /><br />';
 		echo display_bar($skill_thirst,'drink');
 		echo '<br /><br />';
-		echo display_bar($skill_health,'heart');
+		echo display_bar($skill_health,'health');
 		echo '</div>';
 	}
 
