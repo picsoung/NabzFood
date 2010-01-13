@@ -33,19 +33,35 @@
 	padding:10px;
 	}
 	
-#table_users
+#table_users, #table_rabbits
 {
 	width: 90%;
-	border: 0px !important;	
+	border: 0px !important;
+	text-align:center;
 	}
 	
-#table_users_title, #tbl_users_row1
+#table_users_title, #tbl_users_row1, #table_rabbits_title, #tbl_rabbits_row1
 {
 	background-color: DarkGrey;
 	}
 
-#table_users_title
+#table_users_title, #table_rabbits_title
 {
 	font-weight: bold;
 	font-size: 1.5em;
-	}
+	
+}
+	
+#td_error
+{
+	background-color: red;
+	font-weight: bold;
+	text-align: center;
+}
+
+#td_valid
+{
+	background-color: green;
+	font-weight: bold;
+	text-align: center;
+}
