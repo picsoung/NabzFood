@@ -1,0 +1,6 @@
+#ignore special files
+.DS_Store
+
+modules/members/reset_password.php
+modules/mail/mail.php
+global/config.php
