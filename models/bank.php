@@ -19,9 +19,8 @@
     }
    
     //Function to buy a bingo ticket
-    function buy_ticket($id_user,$number)
+    function buy_ticket($id_user,$number,$ticket_price)
     {
-        $ticket_price = 5;
         $pdo = PDO2::getInstance();
         
         //Change usr_id column in number row in the table tbl_numbers
@@ -37,5 +36,31 @@
         $query->bindValue(":id_user",$id_user);
         $query->execute();
         print_r($query->errorInfo());
+        
+        update_jackpot();
+    }
+    
+    //Function to update the jackpot on the textfile
+    function update_jackpot()
+    {
+        //read info about the bingo
+        $bingo_info = fopen('global/bingo.txt','r+');
+        //price of a ticket is on the first line
+        $price = fgets($bingo_info);
+        $price = (int)str_replace("price:","",$price);
+        
+        //total jackpot is on the second
+        $char_jackpot = fgets($bingo_info);
+        $char_jackpot = str_replace("jackpot:","",$char_jackpot);
+        $jackpot = (int)$char_jackpot;
+        
+        $new_jackpot = $jackpot + $price;
+        
+        //new pointer will be before the value of the jackpot, ftell calls the current position of the cursor
+        $pointer = ftell($bingo_info)-strlen($char_jackpot);
+        //Move the cursor to the new pointer
+        fseek($bingo_info,$pointer);
+        //Write the new jackpot
+        fputs($bingo_info,$new_jackpot);
     }
 ?>
