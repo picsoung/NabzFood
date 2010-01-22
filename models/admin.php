@@ -320,4 +320,153 @@
 	
 	}
 	
+	//Number of tickets sold for the bingo
+	function num_ticket_sold()
+	{
+		$pdo = PDO2::getInstance();
+		$query = $pdo->prepare("SELECT COUNT( * ) AS usr_id FROM tbl_numbers WHERE usr_id >0");
+		$query->execute();
+		
+		if ($result = $query->fetch(PDO::FETCH_ASSOC)) {
+			$query->closeCursor();
+			return $result['usr_id'];
+		}
+		return $query->errorInfo();
+		
+	}
+	
+	//Function to update the new price of ticket
+	function update_bingo_price($new_price)
+	{
+		//read info about the bingo
+		$bingo_info = fopen('global/bingo.txt','r+');
+		//price of a ticket is on the first line
+		$char_price = fgets($bingo_info);
+		
+		$char_price = str_replace("price:","",$char_price);
+		
+		//new pointer will be before the value of the price, ftell calls the current position of the cursor
+		$pointer = ftell($bingo_info)-strlen($char_price);
+		//Move the cursor to the new pointer
+		fseek($bingo_info,$pointer);
+		//Write the new price
+		$new_price = $new_price."\n";
+		fputs($bingo_info,$new_price);
+		fclose($bingo_info);
+
+	}
+	
+	//Function to update the jackpot of the bingo
+	function update_bingo_jackpot($new_jackpot)
+	{
+		//read info about the bingo
+		$bingo_info = fopen('global/bingo.txt','r+');
+		//price of a ticket is on the first line
+		$price = fgets($bingo_info);
+		
+		//total jackpot is on the second
+		$char_jackpot = fgets($bingo_info);
+		$char_jackpot = str_replace("jackpot:","",$char_jackpot);
+		
+		//new pointer will be before the value of the jackpot, ftell calls the current position of the cursor
+		$pointer = ftell($bingo_info)-strlen($char_jackpot);
+		
+		//Move the cursor to the new pointer
+		fseek($bingo_info,$pointer);
+		
+		//Write the new jackpot
+		$new_jackpot = $new_jackpot."\n";
+		fputs($bingo_info,$new_jackpot);
+		fputs($bingo_info," ");
+		fclose($bingo_info);
+	}
+	
+	//Function to dertermine who wins the bingo
+	function bingo_find_winner($jackpot,$nb_gamers)
+	{
+		$pdo = PDO2::getInstance();
+		
+		//Who played?
+		$query = $pdo->prepare("SELECT usr_id FROM tbl_numbers WHERE usr_id >0");
+		$query->execute();
+		
+		$i=0;
+		while ($row= $query->fetch(PDO::FETCH_NUM, PDO::FETCH_ORI_NEXT)) {
+			$tbx_gamers[$i]= $row[0];
+			$i = $i+1;
+		}
+		
+		$number = mt_rand(0,$nb_gamers-1);
+		
+		$id_winner = $tbx_gamers[$number];
+		
+		//Add the jackpot
+		$query = $pdo->prepare("UPDATE tbl_user SET user_balance = user_balance + :jackpot WHERE user_id = :id_winner");
+		$query->bindValue(":jackpot",$jackpot);
+		$query->bindValue(":id_winner",$id_winner);
+		$query->execute();
+		
+		return $id_winner;
+		
+	}
+	
+	//Function return the name depending on id
+	function get_name_user($id_user)
+	{
+		$pdo = PDO2::getInstance();
+		$query = $pdo->prepare("SELECT user_pseudo FROM tbl_user WHERE user_id = :id_user");
+		$query->bindValue(":id_user",$id_user);
+		$query->execute();
+		if ($result = $query->fetch(PDO::FETCH_ASSOC)) {
+			$query->closeCursor();
+			return $result['user_pseudo'];
+		}
+		return $query->errorInfo();
+	}
+	
+	//Function to insert the winner in the textfile
+	function update_winners($id_winner)
+	{
+		//last 5 winners are in the last 5lines of the file
+		$bingo_winners = fopen('global/bingo_winners.txt','r+');
+		$array_winners = array();
+		$i=0;
+		while($i<5)
+		{
+		    array_push($array_winners,str_replace(CHR(13).CHR(10),"",fgets($bingo_winners))); //without breaklines
+		    $i++;
+		}
+		fclose($bingo_winners);
+		
+		//Do the permutation
+		$i=4;
+		$array_winners[4]="";
+		while($i>0)
+		{
+		    $array_winners[$i]=$array_winners[$i-1];
+		    $i=$i-1;
+		}
+		
+		$array_winners[0] = get_name_user($id_winner)."\n";
+		
+		//Write in file
+		$bingo_winners = fopen('global/bingo_winners.txt','r+');
+		
+		foreach($array_winners as $value)
+		{
+		    fputs($bingo_winners,$value);
+		}
+		fclose($bingo_winners);
+	}
+	
+	//Function to init the table of bingo
+	function init_bingo()
+	{
+		$pdo = PDO2::getInstance();
+		$query = $pdo->prepare("UPDATE tbl_numbers SET usr_id = 0 WHERE usr_id >0");
+		$query->execute();
+		
+		//Init jackpot on the txt_file
+		update_bingo_jackpot(0);
+	}
 ?>
