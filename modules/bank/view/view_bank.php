@@ -1,3 +1,10 @@
+<?php
+    require_once("global/menu_bank.php");
+	
+    $menu = display_menu_bank();
+    echo $menu;
+    
+?>
 <h2>Nab$z Bank</h2>
 
 <p>Vous pourrez ici recharger votre compte en nab$z, pour cela plusieurs options s'offrent à vous : </p>
